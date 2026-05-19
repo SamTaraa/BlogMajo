@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeakMind — Prácticas en Psicología Deportiva</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a2e1a;
+    --moss: #2d4a2d;
+    --sage: #4a7c4a;
+    --fern: #6aab6a;
+    --mint: #a8d5a8;
+    --cream: #f5f0e8;
+    --parchment: #ede6d6;
+    --gold: #c8a84b;
+    --gold-light: #e8c870;
+    --ink: #1c1c1c;
+    --muted: #5a6a5a;
+    --border: rgba(74,124,74,0.2);
+    --section-bg: #f9f6f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--forest);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 64px;
+    border-bottom: 1px solid rgba(106,171,106,0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--mint);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(245,240,232,0.7);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--mint);
+    background: rgba(106,171,106,0.1);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--forest);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+    padding-top: 64px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 60%, rgba(74,124,74,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(200,168,75,0.1) 0%, transparent 50%);
+  }
+
+  .hero-text {
+    padding: 6rem 4rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5.5rem;
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--mint);
+  }
+
+  .hero-intro {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.8;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(106,171,106,0.4);
+    border-radius: 100px;
+    color: var(--mint);
+    text-transform: uppercase;
+  }
+
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-quote-block {
+    padding: 3rem;
+    max-width: 380px;
+  }
+
+  .big-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(106,171,106,0.2);
+    margin-bottom: 1rem;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.5;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(245,240,232,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.4), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 0;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--forest);
+    margin-bottom: 3rem;
+  }
+
+  h2.section-title em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  /* SOBRE MÍ */
+  #sobre-mi {
+    background: var(--cream);
+  }
+
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .sobre-left {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .profile-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--moss);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .profile-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem;
+    font-weight: 300;
+    color: var(--mint);
+    opacity: 0.5;
+  }
+
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .profile-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+  }
+  .profile-corner.tl { top: 1rem; left: 1rem; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .profile-corner.br { bottom: 1rem; right: 1rem; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+  .profile-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 0.25rem;
+  }
+
+  .profile-role {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .profile-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .chip {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--sage);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sobre-right p {
+    color: #3a4a3a;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .sobre-right p:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.6;
+  }
+
+  /* EXPERIENCIAS */
+  #experiencias {
+    background: var(--forest);
+    color: var(--cream);
+  }
+
+  #experiencias h2.section-title {
+    color: var(--cream);
+  }
+
+  #experiencias .section-label {
+    color: var(--fern);
+  }
+
+  #experiencias .section-label::before {
+    background: var(--fern);
+  }
+
+  .exp-personal {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(106,171,106,0.2);
+    border-radius: 2px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .exp-personal h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--mint);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .exp-personal h3::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(106,171,106,0.2);
+  }
+
+  .exp-personal p {
+    color: rgba(245,240,232,0.75);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .exp-random {
+    float: right;
+    width: min(230px, 38%);
+    margin: 0.25rem 0 1rem 1.75rem;
+  }
+
+  .exp-random img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid rgba(200,168,75,0.25);
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .exp-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(106,171,106,0.15);
+    border-radius: 2px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--sage);
+  }
+
+  .exp-card.deportistas::before {
+    background: var(--gold);
+  }
+
+  .exp-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--mint);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-card.deportistas h3 {
+    color: var(--gold-light);
+  }
+
+  .exp-card .exp-type {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .exp-card p {
+    color: rgba(245,240,232,0.65);
+    font-size: 0.92rem;
+    font-weight: 300;
+  }
+
+  /* APRENDIZAJES */
+  #aprendizajes {
+    background: var(--section-bg);
+  }
+
+  .apr-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .apr-tab {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.25rem;
+    cursor: pointer;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .apr-tab.active {
+    color: var(--forest);
+    border-bottom-color: var(--sage);
+  }
+
+  .apr-tab:hover:not(.active) {
+    color: var(--forest);
+  }
+
+  .apr-content {
+    display: none;
+  }
+
+  .apr-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .apr-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 1.5rem;
+  }
+
+  .apr-content p {
+    color: #3a4a3a;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .aprendizaje-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .aprendizaje-item:last-child {
+    border-bottom: none;
+  }
+
+  .apr-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 50px;
+  }
+
+  .apr-body h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.4rem;
+  }
+
+  .apr-body p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 0;
+    font-weight: 300;
+  }
+
+  /* REFLEXIONES */
+  #reflexiones {
+    background: var(--cream);
+  }
+
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .ref-card {
+    padding: 2rem;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .ref-card.resuelta::after {
+    content: 'RESUELTA';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--sage);
+    background: rgba(74,124,74,0.1);
+    border: 1px solid rgba(74,124,74,0.3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  .ref-card.pendiente::after {
+    content: 'PENDIENTE';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    background: rgba(200,168,75,0.1);
+    border: 1px solid rgba(200,168,75,0.3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  .ref-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ref-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .ref-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* GALERIA */
+  #galeria {
+    background: var(--section-bg);
+  }
+
+  .gallery-intro {
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 680px;
+    margin-bottom: 2rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .gallery-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .gallery-media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--parchment);
+    display: block;
+    object-fit: cover;
+  }
+
+  .gallery-card video.gallery-media {
+    cursor: pointer;
+  }
+
+  .gallery-caption {
+    padding: 1rem;
+  }
+
+  .gallery-caption h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.35rem;
+  }
+
+  .gallery-caption p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .gallery-empty {
+    border: 1px dashed var(--border);
+    background: rgba(237,230,214,0.55);
+    padding: 2rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* AGRADECIMIENTOS */
+  #agradecimientos {
+    background: var(--forest);
+    color: var(--cream);
+  }
+
+  #agradecimientos h2.section-title {
+    color: var(--cream);
+  }
+
+  #agradecimientos .section-label {
+    color: var(--gold);
+  }
+
+  #agradecimientos .section-label::before {
+    background: var(--gold);
+  }
+
+  .agr-shipmental {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(200,168,75,0.08);
+    border: 1px solid rgba(200,168,75,0.2);
+    border-radius: 2px;
+    margin-bottom: 3rem;
+  }
+
+  .agr-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  .agr-logo-sub {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,168,75,0.5);
+    margin-bottom: 1.5rem;
+  }
+
+  .agr-shipmental p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .agr-team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .agr-person {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(106,171,106,0.15);
+    border-radius: 2px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .agr-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--mint);
+    margin: 0 auto 0.75rem;
+    border: 1px solid rgba(106,171,106,0.3);
+  }
+
+  .agr-person-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .agr-person-role {
+    font-size: 0.72rem;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+  }
+
+  .agr-person p {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.6);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .agr-deportistas {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(106,171,106,0.15);
+    padding: 2.5rem;
+    border-radius: 2px;
+  }
+
+  .agr-deportistas h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--mint);
+    margin-bottom: 1rem;
+  }
+
+  .agr-deportistas p {
+    color: rgba(245,240,232,0.7);
+    font-weight: 300;
+    font-size: 0.95rem;
+  }
+
+  /* SUGERENCIAS */
+  #sugerencias {
+    background: var(--section-bg);
+  }
+
+  .sug-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .sug-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sug-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .sug-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: var(--mint);
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .sug-block.general .sug-num {
+    background: var(--parchment);
+    color: var(--sage);
+    border: 1px solid var(--border);
+  }
+
+  .sug-item p {
+    font-size: 0.92rem;
+    color: #3a4a3a;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .sug-item strong {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.2rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111a11;
+    padding: 3rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(106,171,106,0.15);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--mint);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDERS */
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    color: var(--border);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .ornament::before, .ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .dark-ornament {
+    color: rgba(106,171,106,0.2);
+  }
+
+  .dark-ornament::before, .dark-ornament::after {
+    background: rgba(106,171,106,0.15);
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(200,168,75,0.05);
+  }
+
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--forest) !important;
+    margin: 0 !important;
+    line-height: 1.5;
+  }
+
+  .dark-pull {
+    border-left-color: var(--gold);
+    background: rgba(200,168,75,0.06);
+  }
+
+  .dark-pull p {
+    color: rgba(245,240,232,0.85) !important;
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      height: auto;
+      min-height: 64px;
+      padding: 0.75rem 1.25rem;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.68rem;
+      padding: 0.25rem 0.45rem;
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 96px;
+    }
+
+    .hero-text {
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+    }
+
+    .section-inner {
+      padding: 0 1.5rem;
+    }
+
+    .sobre-grid,
+    .exp-grid,
+    .sug-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ref-grid,
+    .agr-team-grid,
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    nav {
+      position: static;
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      justify-content: flex-start;
+    }
+
+    .hero {
+      padding-top: 0;
+      min-height: auto;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+    }
+
+    h2.section-title {
+      font-size: 2.4rem;
+    }
+
+    .ref-grid,
+    .agr-team-grid,
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .exp-random {
+      float: none;
+      width: 100%;
+      max-width: 260px;
+      margin: 1.25rem auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#inicio">Peak<span>Mind</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#experiencias">Experiencias</a></li>
+    <li><a href="#aprendizajes">Aprendizajes</a></li>
+    <li><a href="#reflexiones">Reflexiones</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#agradecimientos">Agradecimientos</a></li>
+    <li><a href="#sugerencias">Sugerencias</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Psicología Deportiva · Prácticas · I Semestre 2026</div>
+    <h1>Peak<em>Mind</em></h1>
+    <p class="hero-intro">
+      PeakMind nace de mi experiencia en prácticas de psicología deportiva. No como un proyecto perfecto ni como un espacio completamente estructurado, sino como el reflejo real de lo que significa estar en formación, aprender desde el campo y crecer mientras acompaño procesos de rendimiento.
+    </p>
+    <div class="hero-tags">
+      
+      
+      
+      
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-quote-block">
+      <div class="big-quote">"</div>
+      <p class="quote-text">
+        Cada sesión, cada evaluación y cada conversación con deportistas me enseñó que el rendimiento no es solo físico, y que detrás de cada competencia hay una mente gestionando presión, expectativas y emociones.
+      </p>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Explorar
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-inner">
+    <div class="section-label">01</div>
+    <h2 class="section-title">Sobre <em>mí</em></h2>
+
+    <div class="sobre-grid">
+      <div class="sobre-left">
+        <div class="profile-frame">
+          <div class="profile-corner tl"></div>
+          <img class="profile-photo" src="media/fotos/FotoSobreMi.jpeg" alt="Maria José Salazar">
+          <div class="profile-corner br"></div>
+        </div>
+        <p class="profile-name">Maria José Salazar</p>
+        <p class="profile-role">Estudiante · Psicología Deportiva</p>
+
+      </div>
+
+      <div class="sobre-right">
+        <p>Soy estudiante de psicología con una profunda curiosidad por entender cómo funciona la mente bajo presión.</p>
+
+        <p>Crecí rodeada del deporte y siempre me llamó la atención que los grandes atletas no solo son físicamente talentosos, sino que tienen algo diferente en su forma de pensar.</p>
+
+        <div class="pull-quote">
+          <p>«No vine a las prácticas a aplicar lo que ya sabía. Vine a descubrir lo que todavía no sabía que necesitaba aprender.»</p>
+        </div>
+
+        <p>Fuera del ámbito académico, soy una persona curiosa, empática y apasionada por las conversaciones profundas. Me interesa entender a las personas, sus motivaciones y sus historias. Creo que esa curiosidad es lo que me hace conectar bien con los deportistas.</p>
+
+        <p>Estas prácticas en Ship Mental Sport fueron mi primera experiencia real en campo. No tenía todas las respuestas, pero sí tenía disposición, honestidad y muchas ganas de aprender. Y eso, al final, fue suficiente para empezar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIAS -->
+<section id="experiencias">
+  <div class="section-inner">
+    <div class="section-label" style="color: var(--fern);">— 02</div>
+    <h2 class="section-title" style="color: var(--cream);">Mis <em>experiencias</em></h2>
+
+    <!-- PERSONAL -->
+    <div class="exp-personal">
+      <h3>Experiencia personal</h3>
+      <div class="exp-random">
+        <img src="media/fotos/foto4.jpeg" alt="Momento de las prácticas">
+      </div>
+      <p>Llegar a Ship Mental Sport por primera vez fue una mezcla de emoción y vértigo. Había estudiado teorías, practicado conceptos en el aula… pero nada me había preparado del todo para el primer momento en que me encontré frente a un deportista de alto rendimiento, esperando que yo tuviera algo valioso que ofrecerle.</p>
+      <p>Recuerdo sentir esa presión de «¿lo estoy haciendo bien?» en casi todas las sesiones iniciales. Con el tiempo, aprendí que esa pregunta en sí misma era una señal saludable: significa que te importa, que estás presente, que no te has vuelto indiferente. La inseguridad se fue transformando poco a poco en confianza, no porque dejé de cometer errores, sino porque aprendí a confiar en el proceso.</p>
+
+      <div class="pull-quote dark-pull" style="margin-top: 1.5rem;">
+        <p>«Hubo días en los que salí de las sesiones sintiéndome completamente insuficiente. Y días en los que salí sabiendo que había hecho una diferencia real. Aprendí a vivir con los dos.»</p>
+      </div>
+    </div>
+
+    <!-- GRUPALES -->
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-type">Grupal · Compañeros de trabajo</div>
+        <h3>El equipo Ship Mental</h3>
+        <p>Aprender a trabajar dentro de un equipo profesional ya formado fue uno de los mayores retos. Llegué con mis propias ideas y formas de hacer las cosas, y tuve que aprender a leer los ritmos del grupo, sus dinámicas no dichas y sus expectativas implícitas.</p>
+        <p style="margin-top: 0.75rem;">Hubo momentos de tensión, de malentendidos, de sentir que no encajaba del todo. Pero también hubo compañeros que se convirtieron en referentes, en personas que me mostraron cómo se ve el trabajo bien hecho desde adentro. Ese contraste fue invaluable.</p>
+      </div>
+
+      <div class="exp-card deportistas">
+        <div class="exp-type">Grupal · Deportistas</div>
+        <h3>En el campo con ellos</h3>
+        <p>Trabajar directamente con deportistas fue la experiencia más formadora de todas. Cada uno llegaba con su historia, sus bloqueos, sus metas y su propio ritmo. No había dos procesos iguales, y eso me obligó a salir del piloto automático constantemente.</p>
+        <p style="margin-top: 0.75rem;">Lo que más me sorprendió fue la vulnerabilidad. Atletas que desde afuera parecen invencibles, adentro cargaban miedos muy humanos: el miedo a fallar, a decepcionar, a no ser suficientes. Acompañar eso fue un privilegio que no esperaba.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APRENDIZAJES -->
+<section id="aprendizajes">
+  <div class="section-inner">
+    <div class="section-label">03</div>
+    <h2 class="section-title"><em>Aprendizajes</em> que me transformaron</h2>
+
+    <div class="apr-tabs">
+      <button class="apr-tab active" onclick="showTab('individual')">Individuales</button>
+      <button class="apr-tab" onclick="showTab('companeros')">De mis compañeros</button>
+      <button class="apr-tab" onclick="showTab('deportistas')">De los deportistas</button>
+      <button class="apr-tab" onclick="showTab('teoricos')">Teórico-prácticos</button>
+    </div>
+
+    <div id="tab-individual" class="apr-content active">
+      <h3>Lo que aprendí sobre mí misma</h3>
+      <p>Quizás los aprendizajes más inesperados fueron los que tuvieron que ver conmigo. Las prácticas fueron un espejo que no pedí pero que necesitaba.</p>
+      <div class="aprendizaje-item">
+        <div class="apr-number">01</div>
+        <div class="apr-body">
+          <h4>La tolerancia a la incertidumbre es una habilidad</h4>
+          <p>Aprendí que no siempre puedo saber si lo estoy haciendo bien en tiempo real. A veces los resultados de una sesión se ven semanas después, y aprender a confiar en el proceso sin certeza inmediata fue uno de los aprendizajes más difíciles y más valiosos.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">02</div>
+        <div class="apr-body">
+          <h4>Mis propios sesgos entraron al campo conmigo</h4>
+          <p>Sin quererlo, proyecté expectativas, interpretaciones y supuestos en varios momentos. Reconocerlo fue incómodo pero necesario. La reflexión constante se volvió una herramienta indispensable.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">03</div>
+        <div class="apr-body">
+          <h4>Cuidar mi propio estado mental también es parte del trabajo</h4>
+          <p>No puedo acompañar bien desde el agotamiento o la ansiedad. Entendí que mi bienestar no es un lujo sino una condición para hacer un trabajo de calidad.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">04</div>
+        <div class="apr-body">
+          <h4>La paciencia como práctica deliberada</h4>
+          <p>En un entorno de alto rendimiento donde todo se mide y se apresura, aprender a sostener la calma y esperar el momento adecuado para intervenir fue un aprendizaje profundo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-companeros" class="apr-content">
+      <h3>Lo que aprendí de las personas con quienes trabajé</h3>
+      <p>Cada colega fue un maestro a su manera, aunque no siempre de la forma en que lo esperaba.</p>
+      <div class="aprendizaje-item">
+        <div class="apr-number">01</div>
+        <div class="apr-body">
+          <h4>La comunicación profesional es un arte que se aprende</h4>
+          <p>Observar cómo los profesionales del equipo transmitían información técnica a los deportistas de forma clara y respetuosa me dio un modelo que quiero replicar en mi práctica futura.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">02</div>
+        <div class="apr-body">
+          <h4>Trabajar en equipo requiere ceder sin perderte</h4>
+          <p>Vi cómo los profesionales negociaban perspectivas diferentes sin que ninguno tuviera que «ganar». La colaboración real es un equilibrio delicado entre convicción y apertura.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">03</div>
+        <div class="apr-body">
+          <h4>La experiencia no siempre sinónimo de razón</h4>
+          <p>Hubo momentos en que una perspectiva más fresca, menos condicionada por la rutina, aportó algo valioso. La experiencia es un activo enorme, pero no exime de la reflexión continua.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-deportistas" class="apr-content">
+      <h3>Lo que aprendí de los deportistas</h3>
+      <p>Si tuviera que elegir una sola fuente de aprendizaje de estas prácticas, elegiría a ellos sin dudarlo.</p>
+      <div class="aprendizaje-item">
+        <div class="apr-number">01</div>
+        <div class="apr-body">
+          <h4>El rendimiento es profundamente contextual</h4>
+          <p>Un deportista que «falla» en competencia no necesariamente tiene problemas de habilidad. A veces es el entorno, la relación con su entrenador, o algo que está ocurriendo en su vida personal. La psicología tiene que mirar el sistema completo.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">02</div>
+        <div class="apr-body">
+          <h4>La identidad deportiva puede ser una trampa</h4>
+          <p>Varios deportistas me mostraron cómo haberse definido completamente como «atletas» los dejaba sin recursos cuando el rendimiento bajaba. El trabajo de ampliar la identidad fue de los más sensibles y más necesarios.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">03</div>
+        <div class="apr-body">
+          <h4>La confianza se gana con presencia, no con técnica</h4>
+          <p>Los deportistas no necesitan que les impresiones con herramientas. Necesitan sentir que los ves, que los escuchas de verdad y que no tienes un guion preparado para su historia.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">04</div>
+        <div class="apr-body">
+          <h4>La motivación intrínseca es frágil y vale la pena protegerla</h4>
+          <p>Ver cómo los entornos de presión externa podían erosionar el amor genuino por el deporte me hizo entender una de las tareas más importantes del psicólogo deportivo: cuidar esa llama interna.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-teoricos" class="apr-content">
+      <h3>Donde la teoría tocó la realidad</h3>
+      <p>No todo lo que estudié en la carrera llegó igual al campo. Algunas cosas se confirmaron, otras se complejizaron, y algunas simplemente no funcionaron como esperaba.</p>
+      <div class="aprendizaje-item">
+        <div class="apr-number">01</div>
+        <div class="apr-body">
+          <h4>El modelo de zonas de rendimiento óptimo (ZOF)</h4>
+          <p>En teoría, cada deportista tiene una zona de activación ideal. En la práctica, identificar esa zona con precisión y acompañar su regulación en tiempo real es mucho más complejo. El contexto importa enormemente.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">02</div>
+        <div class="apr-body">
+          <h4>Mindfulness en el deporte: más que una moda</h4>
+          <p>Llegué algo escéptica sobre la aplicación del mindfulness en entornos de alto rendimiento. Las prácticas me mostraron que, cuando se usa con intención y no como receta universal, tiene efectos reales y medibles en la concentración y el manejo de la presión.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">03</div>
+        <div class="apr-body">
+          <h4>La evaluación psicológica aplicada al deporte</h4>
+          <p>Aprender a seleccionar, adaptar y aplicar instrumentos de evaluación en un contexto deportivo fue uno de los aprendizajes más técnicos y prácticos del proceso. La entrevista sigue siendo la herramienta más poderosa.</p>
+        </div>
+      </div>
+      <div class="aprendizaje-item">
+        <div class="apr-number">04</div>
+        <div class="apr-body">
+          <h4>El enfoque de acompañamiento vs. acción</h4>
+          <p>En el aula aprendemos a intervenir. En el campo aprendí que muchas veces el rol más poderoso no es intervenir, sino acompañar. Sostener sin dirigir. Presenciar sin interpretar demasiado pronto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLEXIONES -->
+<section id="reflexiones">
+  <div class="section-inner">
+    <div class="section-label">04</div>
+    <h2 class="section-title"><em>Reflexiones</em> que no se fueron</h2>
+
+    <p style="color: var(--muted); font-weight: 300; max-width: 600px; margin-bottom: 3rem;">Hubo cosas que me dejaron pensando mucho más allá de las prácticas. Preguntas que se resolvieron, preguntas que siguen abiertas, y frases que no puedo dejar de recordar.</p>
+
+    <div class="ref-grid">
+      <div class="ref-card resuelta">
+        <div class="ref-icon">🧠</div>
+        <h3>¿Puede un psicólogo deportivo hacer la diferencia en el rendimiento real?</h3>
+        <p>Lo dudé mucho al principio. Al final de las prácticas, lo que vi me convenció de que sí, aunque de formas más sutiles y menos visibles de lo que imaginaba. No siempre es la diferencia entre ganar o perder, sino entre competir con recursos o sin ellos.</p>
+      </div>
+
+      <div class="ref-card pendiente">
+        <div class="ref-icon">⚖️</div>
+        <h3>¿Cómo se maneja el límite entre el acompañamiento y la dependencia?</h3>
+        <p>Me pregunté constantemente: ¿esto les empodera o los hace más dependientes? Sigo sin tener una respuesta perfecta.</p>
+      </div>
+
+      <div class="ref-card resuelta">
+        <div class="ref-icon">💬</div>
+        <h3>Una frase de un deportista que no olvido</h3>
+        <p>«Nadie me había preguntado cómo me sentía, solo cómo había rendido.» Eso me lo dijeron en la segunda semana y todavía resuena. Me hizo entender por qué la psicología deportiva importa y dónde existe el vacío.</p>
+      </div>
+
+      
+
+      <div class="ref-card resuelta">
+        <div class="ref-icon">🌱</div>
+        <h3>¿Puedo estar en formación y ser útil al mismo tiempo?</h3>
+        <p>La inseguridad de ser practicante me persiguió. Pero con el tiempo entendí que mi mirada fresca, sin los automatismos del experto, tenía valor propio. Estar aprendiendo no me hacía menos capaz de aportar.</p>
+      </div>
+
+      <div class="ref-card pendiente">
+        <div class="ref-icon">🎯</div>
+        <h3>¿La psicología deportiva siempre tiene que estar al servicio del rendimiento?</h3>
+        <p>Esta pregunta me sigue rondando. Trabajé con deportistas que claramente necesitaban apoyo que iba más allá del rendimiento. </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="section-inner">
+    <div class="section-label">05</div>
+    <h2 class="section-title">Momentos de <em>campo</em></h2>
+    <p class="gallery-intro">Un registro visual de las sesiones, entrenamientos, espacios de acompañamiento y pequeños momentos que también hicieron parte del proceso.</p>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-empty">Pronto se agregarán registros visuales de las sesiones, entrenamientos y momentos del proceso.</div>
+    </div>
+  </div>
+</section>
+
+<!-- AGRADECIMIENTOS -->
+<section id="agradecimientos">
+  <div class="section-inner">
+    <div class="section-label">06</div>
+    <h2 class="section-title" style="color: var(--cream);">Con <em>gratitud</em></h2>
+
+    <!-- Ship Mental -->
+    <div class="agr-shipmental">
+      <div class="agr-logo-text">Ship Mental Sport</div>
+      
+      <p>Gracias por abrir las puertas a alguien que llegó con más preguntas que respuestas. Por crear un espacio donde aprender era bienvenido, donde la duda no era señal de incapacidad sino de compromiso. Ship Mental no fue solo mi lugar de prácticas; fue el lugar donde entendí qué tipo de profesional quiero ser.</p>
+    </div>
+
+    <!-- Equipo -->
+    <p style="color: var(--fern); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem;">Agradecimiento al equipo</p>
+    <div class="agr-team-grid">
+      <div class="agr-person">
+        <div class="agr-avatar">ML</div>
+        <div class="agr-person-name">Daniel Lopez</div>
+        <div class="agr-person-role">Psicólogo Deportivo</div>
+        <p>«Gracias por acompañar sin controlar. Por enseñarme a confiar en mi propio criterio.»</p>
+      </div>
+      <div class="agr-person">
+        <div class="agr-avatar">JC</div>
+        <div class="agr-person-name">Entrenadores</div>
+        <div class="agr-person-role">Entrenador</div>
+        <p>«Gracias por darme espacio dentro de su metodología, acompañarme y explicarme conceptos físicos y técnicos.»</p>
+      </div>
+      <div class="agr-person">
+        <div class="agr-avatar">AG</div>
+        <div class="agr-person-name">Fisioterapeutas</div>
+        <div class="agr-person-role">Fisioterapia</div>
+        <p>«Gracias por mostrarme cómo conectar genuinamente con los demás y ayudarlos a volver a la cancha.»</p>
+      </div>
+    </div>
+
+    <!-- Deportistas -->
+    <div class="agr-deportistas">
+      <h3>A los deportistas</h3>
+      <p>Ustedes son la razón de todo esto. Gracias por confiarme algo tan íntimo como sus miedos, sus bloqueos y sus sueños. Gracias por no fingir que estaban bien cuando no lo estaban. Por recibirme con apertura a pesar de que llegaba con poca experiencia y muchas ganas. Cada sesión con ustedes fue una clase que ningún libro podría haberme dado. Espero haber estado a la altura, aunque sea un poco. Me llevo cosas muy bonitas de ustedes: recuerdos, risas y enseñanzas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUGERENCIAS -->
+<section id="sugerencias">
+  <div class="section-inner">
+    <div class="section-label">07</div>
+    <h2 class="section-title"><em>Sugerencias</em> para quienes vienen</h2>
+
+    <p style="color: var(--muted); font-weight: 300; max-width: 600px; margin-bottom: 3rem;">Lo que me hubiera gustado que alguien me dijera antes de empezar. Para los que vienen después de mí, con todo el respeto y la honestidad que merecen.</p>
+
+    <div class="sug-grid">
+      <div class="sug-block">
+        <h3>Para futuros practicantes en Ship Mental Sport</h3>
+        <div class="sug-item">
+          <div class="sug-num">1</div>
+          <p><strong>Llega sin guiones</strong>Ship Mental tiene un ritmo propio, una cultura de trabajo muy definida. Observa primero, mucho, antes de querer implementar lo que aprendiste en clases. El contexto lo cambia todo.</p>
+        </div>
+        <div class="sug-item">
+          <div class="sug-num">2</div>
+          <p><strong>Construye relaciones antes de actuar</strong>Los deportistas necesitan tiempo para confiar en ti. No intentes acelerar ese proceso.</p>
+        </div>
+        <div class="sug-item">
+          <div class="sug-num">3</div>
+          <p><strong>Entiende el lenguaje del entrenamiento</strong>Aprende a hablar el idioma del deporte que acompañas. Si no entiendes la disciplina, te costará mucho más ganar credibilidad con el equipo técnico.</p>
+        </div>
+        <div class="sug-item">
+          <div class="sug-num">4</div>
+          <p><strong>Aprovecha el acompañamiento al máximo</strong>Es el espacio más valioso que tendrás. No lo desperdicies preguntando solo lo administrativo; lleva tus dudas reales, tus miedos profesionales y tus inquietudes.</p>
+        </div>
+        <div class="sug-item">
+          <div class="sug-num">5</div>
+          <p><strong>No temas decir «no sé»</strong>En Ship Mental el equipo valora la honestidad intelectual. Pretender que sabes lo que no sabes puede costarte la credibilidad que más necesitas.</p>
+        </div>
+      </div>
+
+      <div class="sug-block general">
+        <h3>Para practicantes en psicología deportiva</h3>
+        <div class="sug-item">
+          <div class="sug-num">1</div>
+          <p><strong>Las prácticas no son una extensión de la carrera</strong>Son otro mundo. Lo antes que lo asumas, mejor. Llega dispuesta/o a desaprender algunas cosas antes de poder aplicar lo que estudiaste.</p>
+        </div>
+        <div class="sug-item">
+          <div class="sug-num">2</div>
+          <p><strong>Cuida tu salud mental durante el proceso</strong>El acompañamiento emocional constante tiene un costo. Establece rutinas de autocuidado desde el primer día, no cuando ya estés agotada/o.</p>
+        </div>
+        
+        <div class="sug-item">
+          <div class="sug-num">4</div>
+          <p><strong>La humildad no es debilidad profesional</strong>Reconocer tus límites y pedir orientación no te hace menos capaz.</p>
+        </div>
+        <div class="sug-item">
+          <div class="sug-num">5</div>
+          <p><strong>Documenta todo desde el inicio</strong>Notas de sesión, observaciones, evolución de los deportistas, tus propias reflexiones. Cuando llegue el momento de redactar el informe final, lo agradecerás profundamente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Peak<span>Mind</span></div>
+  <p style="margin-top: 0.5rem;">Prácticas en Psicología Deportiva · Ship Mental Sport · I Semestre 2026</p>
+  <p style="margin-top: 1rem; font-size: 0.72rem;">«No es solo sobre alto rendimiento. Es sobre cómo yo también estoy creciendo dentro de él.»</p>
+</footer>
+
+<script>
+window.galleryItems = [
+  { tipo: 'foto', archivo: 'media/fotos/foto1.jpeg', titulo: 'Evidencia principal', descripcion: 'Registro visual principal del lugar de las prácticas.' },
+  { tipo: 'foto', archivo: 'media/fotos/foto2.jpeg', titulo: 'Evidencia fotográfica 2', descripcion: 'Registro visual de actividades realizadas.' },
+  { tipo: 'foto', archivo: 'media/fotos/foto3.jpeg', titulo: 'Evidencia fotográfica 3', descripcion: 'Registro visual de actividades realizadas.' },
+  { tipo: 'video', archivo: 'media/videos/video1.mp4', titulo: 'Evidencia en video 1', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video2.mp4', titulo: 'Evidencia en video 2', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video3.mp4', titulo: 'Evidencia en video 3', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video4.mp4', titulo: 'Evidencia en video 4', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video5.mp4', titulo: 'Evidencia en video 5', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video6.mp4', titulo: 'Evidencia en video 6', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video7.mp4', titulo: 'Evidencia en video 7', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video8.mp4', titulo: 'Evidencia en video 8', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video9.mp4', titulo: 'Evidencia en video 9', descripcion: 'Registro audiovisual de las prácticas.' },
+  { tipo: 'video', archivo: 'media/videos/video10.mp4', titulo: 'Evidencia en video 10', descripcion: 'Registro audiovisual de las prácticas.' },
+];
+
+function renderGallery() {
+  const galleryGrid = document.getElementById('gallery-grid');
+  if (!galleryGrid || window.galleryItems.length === 0) return;
+
+  galleryGrid.innerHTML = window.galleryItems.map((item) => {
+    const media = item.tipo === 'video'
+      ? `<video class="gallery-media" src="${item.archivo}" controls preload="metadata"></video>`
+      : `<img class="gallery-media" src="${item.archivo}" alt="${item.titulo}" loading="lazy">`;
+
+    return `
+      <article class="gallery-card">
+        ${media}
+        <div class="gallery-caption">
+          <h3>${item.titulo}</h3>
+          <p>${item.descripcion || ''}</p>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function showTab(name) {
+  document.querySelectorAll('.apr-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.apr-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+renderGallery();
+
+// Smooth nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 100) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.style.color = link.getAttribute('href') === '#' + current 
+      ? 'var(--mint)' 
+      : 'rgba(245,240,232,0.7)';
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+COMO AGREGAR FOTOS Y VIDEOS
+
+1. Guarda las fotos en:
+   media/fotos
+
+2. Guarda los videos en:
+   media/videos
+
+3. Usa nombres simples, sin espacios ni tildes:
+   sesion-entrenamiento-01.jpg
+   respiracion-01.mp4
+
+4. Abre index.html y busca esta parte casi al final:
+   window.galleryItems = [
+
+5. Agrega una linea por cada foto o video. Ejemplos:
+
+   { tipo: 'foto', archivo: 'media/fotos/sesion-entrenamiento-01.jpg', titulo: 'Sesion de entrenamiento', descripcion: 'Trabajo en campo con deportistas.' },
+
+   { tipo: 'video', archivo: 'media/videos/respiracion-01.mp4', titulo: 'Ejercicio de respiracion', descripcion: 'Fragmento de una sesion practica.' },
+
+6. Sube a Netlify el index.html y la carpeta media completa.
+
+Formatos recomendados:
+- Fotos: .jpg, .jpeg, .png, .webp
+- Videos: .mp4
+
+Tip: si un video pesa mucho, comprimelo antes de subirlo para que la pagina cargue rapido.
