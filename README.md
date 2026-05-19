@@ -1,0 +1,2 @@
+# BlogMajo
+Blog de Majo :)
